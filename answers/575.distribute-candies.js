@@ -70,6 +70,30 @@
  * @return {number}
  */
 var distributeCandies = function(candyType) {
+  let result = 0
 
+  const eatLimit = candyType.length * 0.5
+  const dedup = Object.create(null)
+
+  for (let i = 0; i < candyType.length; i++) {
+    const candy = candyType[i]
+
+    if (dedup[candy] !== undefined) {
+      continue
+    }
+
+    dedup[candy] = true
+    result += 1
+
+    if (result >= eatLimit) {
+      return result
+    }
+  }
+
+  return result
 };
 // @lc code=end
+
+console.log(
+  distributeCandies([1, 1, 2, 3])
+)
