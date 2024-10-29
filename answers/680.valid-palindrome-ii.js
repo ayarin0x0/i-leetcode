@@ -55,6 +55,26 @@
  * @return {boolean}
  */
 var validPalindrome = function(s) {
+  if (s.length < 3) {
+    return true
+  }
 
+  return step(s, 0, s.length - 1, 1)
+
+  function step(s, left, right, hp) {
+    if (left >= right) {
+      return true
+    }
+
+    if (s[left] === s[right]) {
+      return step(s, left + 1, right - 1, hp)
+    }
+
+    if (hp < 1) {
+      return false
+    }
+
+    return step(s, left + 1, right, hp - 1) || step(s, left, right - 1, hp - 1)
+  }
 };
 // @lc code=end
