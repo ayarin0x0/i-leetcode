@@ -90,6 +90,36 @@
  * @return {number[][]}
  */
 var floodFill = function(image, sr, sc, color) {
+  const maxY = image.length - 1
+  const maxX = image[0].length - 1
 
+  step(image, sr, sc, maxY, maxX, image[sr][sc], color)
+
+  return image
+
+  function step(image, y, x, maxY, maxX, baseColor, targetColor) {
+    if (x < 0 || x > maxX) {
+      return
+    }
+
+    if (y < 0 || y > maxY) {
+      return
+    }
+
+    if (image[y][x] === targetColor) {
+      return
+    }
+
+    if (image[y][x] !== baseColor) {
+      return
+    }
+
+    image[y][x] = targetColor
+
+    step(image, y - 1, x, maxY, maxX, baseColor, targetColor)
+    step(image, y + 1, x, maxY, maxX, baseColor, targetColor)
+    step(image, y, x - 1, maxY, maxX, baseColor, targetColor)
+    step(image, y, x + 1, maxY, maxX, baseColor, targetColor)
+  }
 };
 // @lc code=end
