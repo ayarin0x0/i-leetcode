@@ -68,6 +68,28 @@
  * @return {boolean}
  */
 var isToeplitzMatrix = function(matrix) {
+  let prevRow = matrix[0]
 
+  for (let i = 1; i < matrix.length; i++) {
+    const curRow = matrix[i]
+
+    for (let j = 1; j < prevRow.length; j++) {
+      if (curRow[j] !== prevRow[j - 1]) {
+        return false
+      }
+    }
+
+    prevRow = curRow
+  }
+
+  return true
 };
 // @lc code=end
+
+console.log(
+  isToeplitzMatrix([[1,2,3,4],[5,1,2,3],[9,5,1,2]])
+)
+
+// 1 2 3 4
+// 5 1 2 3
+// 9 5 1 2
