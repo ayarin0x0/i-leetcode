@@ -87,6 +87,27 @@
  * @return {number}
  */
 var countStudents = function(students, sandwiches) {
+  const counter = [0, 0]
 
+  for (let i = 0; i < students.length; i++) {
+    const studentPrefer = students[i]
+
+    counter[studentPrefer] += 1
+  }
+
+  for (let i = 0; i < sandwiches.length; i++) {
+    const sandwich = sandwiches[i]
+
+    counter[sandwich] -= 1
+
+    if (counter[sandwich] < 0) {
+      return sandwiches.length - i
+    }
+  }
+
+  return 0
 };
 // @lc code=end
+
+console.log(countStudents([1,1,1,0,0,1], [1,0,0,0,1,1]))
+// console.log(countStudents([1,1,0,0], [0,1,0,1]))
